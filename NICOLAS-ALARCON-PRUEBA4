@@ -58,7 +58,7 @@ def buscar_zapatillas_reservadas():
 
         if not reserva_encontrada['vip'] and reserva_encontrada['pares'] == 1:
             respuesta_vip = input("¿Desea pagar adicional el VIP para poder reservar 2 pares? (s/n): ").lower()
-            if respuesta_vip == 's':
+            if respuesta_vip[0] == 's':
 
                 pares_actualmente_reservados = sum(r['pares'] for r in reservas)
 
@@ -68,8 +68,10 @@ def buscar_zapatillas_reservadas():
                     print(f"Reserva actualizada a VIP. Ahora {reserva_encontrada['nombre']} tiene 2 pares reservados.")
                 else:
                     print("No hay suficiente stock para actualizar a VIP (se alcanzó el limite de 20 pares).")
-            else:
+            elif respuesta_vip == 'n':
                 print("Manteniendo reserva actual.")
+            else:
+                print("Opcion invalida, volviendo al menú principal")
 
         elif reserva_encontrada['vip']:
             print("Esta reserva ya es VIP.")
